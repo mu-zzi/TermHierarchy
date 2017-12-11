@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:light');
+/*@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');*/
+
+@media only screen and (max-width: 400px) {
+    * {
+    	width: 100%;
+    }
+
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
+.hide{
+	display: none;
+}
+
+.show{
+	display: inline-block;
+}
+
+html{
+	--accent-color: #2185d0;
+	--accent-color-dark: #1074BF;
+	--accent-color-darker: #076BB6;
+	--primary-color: black; /*#304050;*/
+	--secondary-color: lightgrey;
+	--background-color: #FEFEFE;
+
+	line-height: 1.5;
+}
+
+* {
+	word-break: break-all;
+	word-break: break-word; // Webkit-Browser
+	box-sizing: border-box;
+
+	/*color: var(--primary-color);*/
+}
+
+body { 
+	font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+	font-size: 14px;
+
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: .75rem;
+    padding-right: .75rem;
+	/*background-color: var(--background-color);*/
+}
+
+#termHierarchyWidget{
+	min-width: inherit;
+	width: inherit;
+}
+
+#networkView{
+	width: 100%;
+	height: 100%;
+}
+
+.border{
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.response{
+	display: inline-block;
+	width: 100%;
+}
+
+/*	Overwrite semantic ui classes	*/
+
+i.icon{
+	color: var(--accent-color);
+}
+
+
+/*	Overwrite vis-network classes	*/
+
+/*
+*	Navigation buttons
+*/
+div.vis-network div.vis-navigation div.vis-button {
+    width: 20px;
+    height: 20px;
+	background-size: 20px;
+	background-position: center;
+
+/*    -moz-border-radius: 10px;
+    border-radius: 10px;*/
+
+    /*position: absolute;*/
+    /*display: inline-block;*/
+    /*background-position: 2px 2px;*/
+    /*background-repeat: no-repeat;*/
+    
+/*    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none*/
+}
+
+div.vis-network div.vis-navigation div.vis-button {
+    /*background-color: #DDFFDD;*/
+}
+
+div.vis-network div.vis-navigation div.vis-button::after {
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #66AA66;
+    text-align: center;
+    display: block;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    /*background-image: none;*/
+    bottom: 40px;
+    left: 45px;
+}
+
+div.vis-button.vis-up::after 
+{ 
+    /*content: "\F062";*/ /* arrow up*/
+}
+
+
+div.vis-network div.vis-navigation div.vis-button.vis-down {
+    /*background-image: none;*/
+    bottom: 10px;
+    left: 45px;
+}
+
+div.vis-button.vis-down::after 
+{ 
+    /*content: "\F063";*/
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-left {
+    /*background-image: none;*/
+    bottom: 10px;
+    left: 15px;
+}
+
+div.vis-button.vis-left::after 
+{ 
+    /*content: "\F060";*/
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-right {
+    /*background-image: none;*/
+    bottom: 10px;
+    left: 75px;
+}
+
+div.vis-button.vis-right::after 
+{ 
+    /*content: "\F061";*/
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+    /*background-image: none;*/
+    bottom: 10px;
+    right: 15px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    /*background-image: none;*/
+    bottom: 10px;
+    right: 45px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    /*background-image: none;*/
+    bottom: 40px;
+    right: 15px
+}

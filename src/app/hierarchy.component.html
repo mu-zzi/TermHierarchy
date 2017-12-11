@@ -1,0 +1,40 @@
+<div id="networkView">
+	<div *ngIf="loading">
+		<div class="ui">
+			<div class="ui active inverted dimmer">
+				<div class="ui loader"></div>
+			</div>
+			<p></p>
+		</div>
+	</div>
+	<div class="response">
+		<div *ngIf="results?.length == 0">
+			<div class="ui warning message content">
+				<div class="header">
+					Failure
+				</div>
+				<div class="description">
+					<p>
+						We're sorry there was something wrong. We cannot show you the hierarchy of the term.
+						Please try again later or contact us at <a href={{contactUrl}}>{{contactUrl}}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="error">
+			<span>
+				<div class="ui error message content">
+					<div class="header">
+						Error: {{error}}
+					</div>
+					<div class="description">
+						<p>
+							We're sorry there was something wrong. We cannot show you the hierarchy of the term.
+							Please try again later or contact us at <a href={{contactUrl}}>{{contactUrl}}</a>
+						</p>
+					</div>
+				</div>
+			</span>
+		</div>
+	</div>
+</div>
