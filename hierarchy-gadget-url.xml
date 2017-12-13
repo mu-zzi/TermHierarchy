@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+
+	<ModulePrefs
+		title="TS term hierarchy visualisation"
+		author="Robert Lorenz"
+		author_email="robert.lorenz@fu-berlin.de">
+		<Require feature="dynamic-height"/>
+		<Require feature="pubsub-2">
+         <Param name="topics">
+          <![CDATA[ 
+          <Topic 
+          	title="GFBio Portal" 
+          	name="gfbio.search.vis" 
+          	subscribe="true"/>
+          ]]>
+         </Param>
+       </Require>
+
+		<!-- <Preload href="..." /> -->
+    
+    </ModulePrefs>
+	
+	<Content type="html">
+     <![CDATA[
+		<html style="height: 100%;">
+		<head>
+			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		</head>
+
+		<body>
+			<div id='hierarchyWidget'></div>
+		</body>
+
+		<script type="text/javascript">
+	      window.addEventListener('message', function(msg) {
+	        // IMPORTANT: Check the origin of the data! 
+	        if (msg.origin.indexOf("gfbio.org") >= 0 ||
+	        	msg.origin.indexOf("uni-jena.de") >= 0 ||
+	            msg.origin.indexOf("bgbm.org") >= 0 ||
+	            msg.origin.indexOf("localhost") >= 0) {
+	            // The data has been sent from your site
+	            // console.log('origin:', msg.origin);
+	            document.getElementById('hierarchyWidget').style.height = msg.data;
+	            adjust();
+	        } else {
+	            // The data hasn't been sent from your site! 
+	            // Be careful! Do not use it.
+	            return;
+	        }
+	    });
+
+		gadgets.HubSettings.onConnect = function(hub, suc, err) {
+			gadgets.Hub.subscribe("gfbio.search.vis", function (topic, data, subscriberData){
+				var base = 'https://dev-gfbio.bgbm.org/widgets_code/hierarchy/index.html?';
+				var datarr = data.split(',', 2);
+
+				if(datarr.length == 2){
+					var terminology_id = datarr[0];
+					var uri = datarr[1];
+
+					if(terminology_id.toLowerCase() == "refresh"){
+						//document.getElementById('hierarchyWidget').src = '';
+						window.location.href = base;
+					}else{
+						window.location.href = base + 'terminology_id=' + terminology_id + '&uri=' + uri;
+						//document.getElementById('hierarchyWidget').src = base + 'terminology_id=' + terminology_id + '&uri=' + uri;
+					}
+
+					console.log(window.location.href);
+				
+					adjust();
+
+				}else{
+					console.log('error receiving the params', data, datarr);
+				}
+			});
+		}
+
+		adjust();
+
+        function adjust() {
+            //var height = document.getElementById('hierarchyWidget').style.height+50;
+            //gadgets.window.adjustHeight();
+        }
+	</script>
+	</html>
+     ]]>
+  </Content>
+
+</Module>
