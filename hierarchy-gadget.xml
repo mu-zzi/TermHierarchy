@@ -23,14 +23,9 @@
 	
 	<Content type="html">
      <![CDATA[
-		<html style="height: 100%;">
-		<head>
-			<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-		</head>
-
-		<body>
-			<div id='hierarchyWidget'></div>
-		</body>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		
+		<iframe src="" id="hierarchyWidget" frameborder="0" scrolling="no" width="345px"> </iframe>
 
 		<script type="text/javascript">
 	      window.addEventListener('message', function(msg) {
@@ -52,6 +47,8 @@
 
 		gadgets.HubSettings.onConnect = function(hub, suc, err) {
 			gadgets.Hub.subscribe("gfbio.search.vis", function (topic, data, subscriberData){
+				//var data = terminology+','+concept;
+
 				var base = 'https://dev-gfbio.bgbm.org/widgets_code/hierarchy/index.html?';
 				var datarr = data.split(',', 2);
 
@@ -60,14 +57,10 @@
 					var uri = datarr[1];
 
 					if(terminology_id.toLowerCase() == "refresh"){
-						//document.getElementById('hierarchyWidget').src = '';
-						window.location.href = base;
+						document.getElementById('hierarchyWidget').src = '';
 					}else{
-						window.location.href = base + 'terminology_id=' + terminology_id + '&uri=' + uri;
-						//document.getElementById('hierarchyWidget').src = base + 'terminology_id=' + terminology_id + '&uri=' + uri;
+						document.getElementById('hierarchyWidget').src = base + 'terminology_id=' + terminology_id + '&uri=' + uri;
 					}
-
-					console.log(window.location.href);
 				
 					adjust();
 
@@ -81,10 +74,10 @@
 
         function adjust() {
             //var height = document.getElementById('hierarchyWidget').style.height+50;
-            //gadgets.window.adjustHeight();
+            gadgets.window.adjustHeight();
         }
 	</script>
-	</html>
+
      ]]>
   </Content>
 
